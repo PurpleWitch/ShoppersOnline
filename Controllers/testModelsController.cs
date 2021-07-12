@@ -25,6 +25,18 @@ namespace ShoppersOnline1.Controllers
             return View(await _context.testModel.ToListAsync());
         }
 
+        // GET: testModels/SearchQuery
+        public async Task<IActionResult> SearchQuery()
+        {
+            return View();
+        }
+
+        // POST: testModels/ShowSearchResults
+        public async Task<IActionResult> ShowSearchResults(String Query)
+        {
+            return View("Index", await _context.testModel.Where(elm => elm.Name.Contains(Query) | elm.Description.Contains(Query)).ToListAsync());
+        }
+
         // GET: testModels/Details/5
         public async Task<IActionResult> Details(int? id)
         {
